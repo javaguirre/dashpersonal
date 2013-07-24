@@ -1,0 +1,8 @@
+{
+  "name": "dashpersonal",
+  "version": "0.0.0",
+  "dependencies": {
+    "gridster": "latest",
+    "jquery": "~2.0.3"
+  }
+}
