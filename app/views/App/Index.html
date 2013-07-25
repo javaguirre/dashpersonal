@@ -1,7 +1,7 @@
 {{set . "title" "DashPersonal"}}
 {{template "header.html" .}}
 
-<h1>DashPersonal @javaguirre</h1>
+<h1>DashPersonal @javaguirre&nbsp;<button id="add-block">Add new block</button></h1>
 
 <div class="demo">
     <div class="gridster">
@@ -12,29 +12,13 @@
                     {{ .Content }}
                 </li>
             {{ end }}
-
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"></li>
-            <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">Data</li>
-            <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
-
-            <li data-row="1" data-col="2" data-sizex="2" data-sizey="1"></li>
-            <li data-row="2" data-col="2" data-sizex="2" data-sizey="2"></li>
-
-            <li data-row="1" data-col="4" data-sizex="1" data-sizey="1"></li>
-            <li data-row="2" data-col="4" data-sizex="2" data-sizey="1"></li>
-            <li data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
-
-            <li data-row="1" data-col="5" data-sizex="1" data-sizey="1"></li>
-            <li data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
-
-            <li data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
-            <li data-row="2" data-col="6" data-sizex="1" data-sizey="2"></li>
         </ul>
     </div>
 </div>
 
 <script src="/public/js/vendor/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/public/js/vendor/gridster/dist/jquery.gridster.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/js/controller.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(function() {
@@ -42,7 +26,7 @@
             widget_margins: [10, 10],
             widget_base_dimensions: [140, 140]
         }).data('gridster');
-        gridster.add_widget('<li class="new">The HTML of the widget...</li>', 2, 1);
+        //gridster.add_widget('<li class="new">The HTML of the widget...</li>', 2, 1);
     });
 </script>
 
