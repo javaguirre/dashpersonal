@@ -16,4 +16,4 @@ script:
   - go test github.com/robfig/revel/cache
   - go test github.com/robfig/revel/harness
 
-  - revel test dashpersonal
+  - revel test github.com/taikoa/dashpersonal
