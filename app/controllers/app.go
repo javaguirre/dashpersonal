@@ -24,20 +24,17 @@ func (c App) Index() revel.Result {
 
 func (c App) Update() revel.Result {
     var widget models.Widget
-    var result Result
     b, err:= ioutil.ReadAll(c.Request.Body)
 
     if err != nil {
         log.Fatal("Problem reading the body: " + err.Error())
     }
 
-    log.Printf(string(b))
-    err2 := json.Unmarshal(b, &widget)
-
-    if err2 != nil {
-        log.Fatal("Problem with Unmarshal: " + err2.Error())
+    if err := json.Unmarshal(b, &widget); err != nil {
+        log.Fatal("Problem with Unmarshal: " + err.Error())
     }
+
     models.SetWidget(widget)
 
-    return c.RenderJson(result)
+    return c.RenderJson(widget)
 }

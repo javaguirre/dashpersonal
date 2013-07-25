@@ -1,12 +1,13 @@
 package models
 
 import (
+    "runtime"
+    "path"
     "encoding/json"
     "io/ioutil"
     "log"
 )
 
-const Filedb = "/home/javaguirre/Proyectos/go/src/dashpersonal/settings.cfg"
 
 type Widget struct {
     Id  string
@@ -17,8 +18,15 @@ type Widget struct {
     Content string
 }
 
+func getFileDb() string {
+    _, filename, _, _ := runtime.Caller(1)
+    filedb := path.Join(path.Dir(filename), "../../settings.cfg")
+
+    return filedb
+}
+
 func ReadFile() []byte {
-    content, err := ioutil.ReadFile(Filedb)
+    content, err := ioutil.ReadFile(getFileDb())
 
     if err != nil {
         log.Fatal("Problem with the file!: " + err.Error())
@@ -45,7 +53,7 @@ func SaveWidgets(widgets []Widget) {
         log.Fatal("Problem with the Marshal: " + err.Error())
     }
 
-    write_err := ioutil.WriteFile(Filedb, []byte(content), 644)
+    write_err := ioutil.WriteFile(getFileDb(), []byte(content), 644)
 
     if write_err != nil {
         log.Fatal("Problem writing the file: " + err.Error())
@@ -54,18 +62,18 @@ func SaveWidgets(widgets []Widget) {
 
 func SetWidget(widget Widget) {
     widgets := GetWidgets()
-    exists := false
 
-    for i:= 0; i < len(widgets); i++ {
-        if widget.Id == widgets[i].Id {
-            widgets[i] = widget
-            exists = true
+    if widget.Id == "X" {
+        widget.Id = string(len(widgets) + 1)
+        widgets = append(widgets, widget)
+    } else {
+        for i:= 0; i < len(widgets); i++ {
+            if widget.Id == widgets[i].Id {
+                widgets[i] = widget
+            }
         }
     }
 
-    if !exists {
-        widgets = append(widgets, widget)
-    }
 
     SaveWidgets(widgets)
 }
