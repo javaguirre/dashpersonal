@@ -2,7 +2,7 @@ package tests
 
 import (
     "github.com/robfig/revel"
-    "dashpersonal/app/models"
+    "github.com/taikoa/dashpersonal/app/models"
     "encoding/json"
     "log"
     "bytes"

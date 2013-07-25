@@ -3,7 +3,7 @@ package controllers
 import (
     "encoding/json"
     "github.com/robfig/revel"
-    "dashpersonal/app/models"
+    "github.com/taikoa/dashpersonal/app/models"
     "io/ioutil"
     "log"
 )
