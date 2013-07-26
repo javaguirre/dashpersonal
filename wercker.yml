@@ -1,6 +1,7 @@
 box: pjvds/golang
 build:
   steps:
+    - pjvds/setup-go-workspace
     - script:
         name: install dependencies
         code: |
@@ -17,3 +18,11 @@ build:
         name: revel tests
         code: |
           revel test github.com/taikoa/dashpersonal
+    - script:
+        name: Store cache
+        code: |-
+          rsync -avzv --exclude "$WERCKER_SOURCE_DIR" "$GOPATH/" "$WERCKER_CACHE_DIR/go-pkg-cache/"
+    - script:
+        name: Populate cache
+        code: |-
+          if test -d "$WERCKER_CACHE_DIR/go-pkg-cache"; then rsync -avzv --exclude "$WERCKER_SOURCE_DIR" "$WERCKER_CACHE_DIR/go-pkg-cache/" "$GOPATH/" ; fi
