@@ -3,6 +3,7 @@ package controllers
 import (
     "encoding/json"
     "github.com/robfig/revel"
+    "github.com/robfig/revel/cache"
     "github.com/taikoa/dashpersonal/app/models"
     "io/ioutil"
     "log"
@@ -18,7 +19,14 @@ type Result struct {
 }
 
 func (c App) Index() revel.Result {
-    var widgets []models.Widget = models.GetWidgets()
+    var widgets []models.Widget
+
+    if err:= cache.Get("widgets", &widgets); err != nil {
+        log.Printf("Cache not working or first time request")
+        widgets = models.GetWidgets()
+        go cache.Set("widgets", widgets, cache.DEFAULT)
+    }
+
 	return c.Render(widgets)
 }
 
@@ -35,6 +43,7 @@ func (c App) Update() revel.Result {
     }
 
     models.SetWidget(widget)
+    go cache.Delete("widgets")
 
     return c.RenderJson(widget)
 }

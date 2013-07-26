@@ -22,8 +22,7 @@ $(function() {
             dataType: "json"
         }).success(function(data) {
             if(data.Id) {
-                console.log(data);
-                gridster.add_widget('<li class="new">The HTML of the widget...</li>', data.Row, data.Col);
+                gridster.add_widget('<li class="new">The HTML of the widget...</li>');
             }
             else {
                 //TODO Show error
