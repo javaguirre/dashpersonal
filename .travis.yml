@@ -12,8 +12,4 @@ install:
   - go get -v github.com/robfig/goauth2/oauth
   - go get -v github.com/mrjones/oauth
 script:
-  - go test github.com/robfig/revel
-  - go test github.com/robfig/revel/cache
-  - go test github.com/robfig/revel/harness
-
   - revel test github.com/taikoa/dashpersonal
