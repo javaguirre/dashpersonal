@@ -69,7 +69,7 @@ func SetWidget(widget Widget) {
     } else {
         for i:= 0; i < len(widgets); i++ {
             if widget.Id == widgets[i].Id {
-                widgets[i] = widget
+                widgets[i].Content = widget.Content
             }
         }
     }

@@ -9,7 +9,7 @@
             {{ range .widgets}}
                 <li data-row="{{ .Row }}" data-col="{{ .Col }}"
                     data-sizex="{{ .Sizex }}" data-sizey="{{ .Sizey }}">
-                    {{ .Content }}
+                    <strong>Widget</strong> {{ .Id }}: {{ .Content }}
                 </li>
             {{ end }}
         </ul>
